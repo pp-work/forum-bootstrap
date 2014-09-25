@@ -2,10 +2,9 @@
 
 class MentionsFormatter {
     public function GetMentions($String) {
-        $Mentions = array();
         // This one grabs mentions that start at the beginning of $String
         preg_match_all(
-            '/(?:^|[\s,\.>])@('.ValidateUsernameRegex().')\b/i',
+            '/(?:^|[\s,\.>])@('.ValidateUsernameRegex().')/i',
             $String,
             $Matches
         );
@@ -22,7 +21,7 @@ class MentionsFormatter {
         // Handle @mentions.
         if(C('Garden.Format.Mentions')) {
             $Mixed = preg_replace(
-                '/(^|[\s,\.>])@('.ValidateUsernameRegex().')\b/i',
+                '/(^|[\s,\.>])@('.ValidateUsernameRegex().')/i',
                 '\1'.Anchor('@\2', '/profile/\\2'),
                 $Mixed
             );
