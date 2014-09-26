@@ -21,7 +21,7 @@ class MentionsFormatter {
         // Handle @mentions.
         if(C('Garden.Format.Mentions')) {
             $Mixed = preg_replace(
-                '/(^|[\s,\.>])@('.ValidateUsernameRegex().')/i',
+                '/(^|[\s,\.>()])@('.ValidateUsernameRegex().')/i',
                 '\1'.Anchor('@\2', '/profile/\\2'),
                 $Mixed
             );
@@ -29,7 +29,7 @@ class MentionsFormatter {
         // Handle #hashtag searches
         if(C('Garden.Format.Hashtags')) {
             $Mixed = preg_replace(
-                '/(^|[\s,\.>])\#([\w\-]+)(?=[\s,\.!?]|$)/i',
+                '/(^|[\s,\.>()])\#([\w\-]+)(?=[\s,\.!?]|$)/i',
                 '\1'.Anchor('#\2', '/search?Search=%23\2&Mode=like').'\3',
                 $Mixed
             );
